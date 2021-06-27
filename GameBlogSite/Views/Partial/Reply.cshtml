@@ -1,0 +1,19 @@
+﻿@model GameBlogSite.Models.EntityFramework.Reply
+
+<div class="modal" id="Cevap">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Cevapla</h2>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <label>Mesaj</label>
+                    @Html.TextBoxFor(x => x.Message, new { @class = "form-control" })
+                    <button type="submit" class="btn btn-success">Gönder</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

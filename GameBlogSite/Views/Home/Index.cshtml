@@ -1,0 +1,122 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Article>
+
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero-area">
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="circle-preloader">
+            <div class="a" style="--n: 5;">
+                <div class="dot" style="--i: 0;"></div>
+                <div class="dot" style="--i: 1;"></div>
+                <div class="dot" style="--i: 2;"></div>
+                <div class="dot" style="--i: 3;"></div>
+                <div class="dot" style="--i: 4;"></div>
+            </div>
+        </div>
+    </div>
+    @Html.Action("Slider", "Partial")
+</section>
+
+<section class="blog-content-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="blog-posts-area">
+                    <div class="row">
+                        @foreach (var item in Model.OrderByDescending(x => x.Id).Take(1))
+                        {
+                            ViewBag.id = item.Id;
+                            <!-- Featured Post Area -->
+                            <div class="col-12">
+                                <div class="featured-post-area mb-50">
+                                    <!-- Thumbnail -->
+                                    <div class="post-thumbnail mb-30">
+                                        <a href="/Article/Index/@item.Id"><img src="@item.Image" alt=""></a>
+                                    </div>
+                                    <!-- Featured Post Content -->
+                                    <div class="featured-post-content">
+                                        <p class="post-date">@item.Date.Value.ToString("dd-MMM-yyyy") / @item.Category.Name</p>
+                                        <a href="/Article/Index/@item.Id" class="post-title">
+                                            <h2>@item.Title</h2>
+                                        </a>
+                                        <p class="post-excerpt">@item.Explanation</p>
+                                    </div>
+                                    <!-- Post Meta -->
+                                    <div class="post-meta d-flex align-items-center justify-content-between">
+                                        <!-- Author Comments -->
+                                        <div class="author-comments">
+                                            <a href="/Writer/Index/@item.WriterId"><span>yazar</span> @item.Writer.Name @item.Writer.SurName</a>
+                                        </div>
+                                        <!-- Social Info -->
+                                        <div class="social-info">
+                                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+                                            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @foreach (var item in Model.OrderByDescending(x => x.Id).Where(x => x.Id != ViewBag.id).Take(6))
+                        {
+                            <div class="col-12 col-sm-6">
+                                <div class="single-blog-post mb-50">
+                                    <!-- Thumbnail -->
+                                    <div class="post-thumbnail">
+                                        <a href="/Article/Index/@item.Id"><img src="@item.Image" style="width: auto; height: 219px;" alt=""></a>
+                                    </div>
+                                    <!-- Content -->
+                                    <div class="post-content">
+                                        <p class="post-date">@item.Date.Value.ToString("dd-MMM-yyyy") / @item.Category.Name</p>
+                                        <a href="/Article/Index/@item.Id" class="post-title">
+                                            <h4>@item.Title</h4>
+                                        </a>
+                                        <p class="post-excerpt">@item.Explanation.Substring(0, 75)...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+                <!-- Pager -->
+                <ol class="nikki-pager">
+                    <li><a href="#"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Yeni</a></li>
+                    <li><a href="#">Eski <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
+                </ol>
+            </div>
+            <div class="col-12 col-sm-9 col-md-6 col-lg-4">
+                <div class="post-sidebar-area">
+                    @Html.Action("AboutUs", "Partial")
+                    <div class="single-widget-area mb-30">
+                        <div class="widget-title">
+                            <h6>Abone Ol &amp; Takip Et</h6>
+                        </div>
+                        <div class="widget-social-info text-center">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-rss"></i></a>
+                        </div>
+                    </div>
+                    @Html.Action("LatestPost", "Partial")
+                    <div class="single-widget-area mb-30">
+                        <a href="#"><img src="~/Content/nikki-master/img/blog-img/add.png" alt=""></a>
+                    </div>
+                    @Html.Action("PopularTags", "Partial")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

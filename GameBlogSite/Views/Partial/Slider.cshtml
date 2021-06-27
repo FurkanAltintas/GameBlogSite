@@ -1,0 +1,22 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Slider>
+
+<div class="hero-post-slides owl-carousel">
+@foreach (var item in Model)
+{
+    <div class="single-hero-post d-flex flex-wrap">
+        <div class="slide-post-thumbnail h-100 bg-img" style="background-image: url(@item.Image);"></div>
+        <div class="slide-post-content h-100 d-flex align-items-center">
+            <div class="slide-post-text">
+                <p class="post-date" data-animation="fadeIn" data-delay="100ms">MAY 01, 2018 / lifestyle</p>
+                <a href="#" class="post-title" data-animation="fadeIn" data-delay="300ms">
+                    <h2>@item.Title</h2>
+                </a>
+                <p class="post-excerpt" data-animation="fadeIn" data-delay="500ms">@item.Explanation</p>
+                <a href="#" class="btn nikki-btn" data-animation="fadeIn" data-delay="700ms">Devamını Oku</a>
+            </div>
+            <div class="page-count"></div>
+        </div>
+    </div>
+}
+</div>

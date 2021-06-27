@@ -1,0 +1,15 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Footer>
+
+
+    <div class="follow-us-instagram">
+        <div class="instagram-content d-flex flex-wrap align-items-center">
+@foreach (var item in Model)
+{
+            <div class="single-instagram">
+                <img src="@item.Image" alt="">
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div>
+}
+        </div>
+    </div>

@@ -1,0 +1,30 @@
+﻿@model GameBlogSite.Models.EntityFramework.Comment
+
+<div class="leave-comment-area clearfix">
+    <div class="comment-form">
+        <h4 class="headline">Yorum Yap</h4>
+        <!-- Comment Form -->
+        <form action="#" method="post">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.NameSurName, new { @class = "form-control", @placeholder = "Adı Soyadı" })
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="form-group">
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        @Html.TextAreaFor(x => x.Message, new { @class = "form-control", @cols = "30", @rows = "10", @placeholder = "Mesaj" })
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn nikki-btn">Gönder</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

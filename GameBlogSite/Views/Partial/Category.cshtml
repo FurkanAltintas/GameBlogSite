@@ -1,0 +1,15 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Category>
+
+
+<li>
+    <a href="#">Kategoriler</a>
+    <div class="megamenu">
+            @foreach (var item in Model)
+            {
+        <ul class="single-mega cn-col-4">
+            <li><a href="/Category/Index/@item.Id">- @item.Name</a></li>
+        </ul>
+            }
+    </div>
+</li> 

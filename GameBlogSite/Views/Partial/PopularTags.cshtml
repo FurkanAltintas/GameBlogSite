@@ -1,0 +1,16 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Category>
+
+<div class="single-widget-area mb-30">
+    <!-- Title -->
+    <div class="widget-title">
+        <h6>popüler taglar</h6>
+    </div>
+    <!-- Tags -->
+    <ol class="popular-tags d-flex flex-wrap">
+        @foreach (var item in Model)
+        {
+         <li><a href="/Category/Index/@item.Id">@item.Name</a></li>
+        }
+    </ol>
+</div>

@@ -1,0 +1,23 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Writer>
+
+<div class="single-widget-area mb-30">
+    <!-- Title -->
+    <div class="widget-title">
+        <h6>Hakkımda</h6>
+    </div>
+    @foreach (var item in Model)
+    {
+        <!-- Thumbnail -->
+        <div class="about-thumbnail">
+            <img src="@item.Image" alt="">
+        </div>
+        <!-- Content -->
+        <div class="widget-content text-center">
+            <img src="~/Image/core-img/signature.png" alt="">
+            <h4>@item.Name @item.SurName</h4>
+            <p>@item.About</p>
+        </div>
+
+    }
+</div>

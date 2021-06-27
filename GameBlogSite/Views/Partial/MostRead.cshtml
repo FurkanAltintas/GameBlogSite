@@ -1,0 +1,22 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Article>
+
+@foreach (var item in Model)
+{
+    <div class="col-12 col-lg-6">
+        <div class="single-blog-post mb-50">
+            <!-- Thumbnail -->
+            <div class="post-thumbnail">
+                <a href="#"><img src="@item.Image" alt="" style="width: auto; height: 219px;"></a>
+            </div>
+            <!-- Content -->
+            <div class="post-content">
+                <p class="post-date">@item.Date.Value.ToString("MMM dd, yyyy") / @item.Category.Name</p>
+                <a href="/Article/Index/@item.Id" class="post-title">
+                    <h4>@item.Title</h4>
+                </a>
+                <p class="post-excerpt">@item.Explanation.Substring(1,75)...</p>
+            </div>
+        </div>
+    </div>
+}

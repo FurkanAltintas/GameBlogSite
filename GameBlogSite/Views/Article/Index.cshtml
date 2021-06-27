@@ -1,0 +1,174 @@
+﻿@model GameBlogSite.Models.ArticleComments
+
+@{
+    ViewBag.Title = @ViewBag.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item"><a href="@Url.Action("Index","Article")">Article</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@ViewBag.Title</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+<!-- ##### Blog Content Area Start ##### -->
+<section class="blog-content-area section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Blog Posts Area -->
+            <div class="col-12">
+                <!-- Post Details Area -->
+                <div class="single-post-details-area">
+                    <div class="post-content">
+                        @foreach (var item in Model.Article)
+                        {
+                            <div class="text-center mb-50">
+                                <p class="post-date">@item.Date.Value.ToString("MMM dd, yyyy") / @item.Category.Name</p>
+                                <h2 class="post-title">@item.Title</h2>
+                                <!-- Post Meta -->
+                                <div class="post-meta">
+                                    <a href="/Writer/Index/@item.WriterId"><span>yazar</span> @item.Writer.Name @item.Writer.SurName</a>
+                                    <a>@item.Comment.Where(x => x.ArticleId == item.Id).Count()<span>Yorum</span></a>
+                                    <a>Okunma Sayısı:<span>@item.ReadingCount</span></a>
+                                </div>
+                            </div>
+                            <!-- Post Thumbnail -->
+                            <div class="post-thumbnail mb-50">
+                                <img src="@item.Image" alt="">
+                            </div>
+                        }
+                        <!-- Post Text -->
+                        <div class="post-text">
+                            <!-- Share -->
+                            <div class="post-share">
+                                <span>Paylaş</span>
+                                <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#" class="google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#" class="instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="#" class="pin"><i class="fa fa-thumb-tack" aria-hidden="true"></i></a>
+                            </div>
+                            @foreach (var item in Model.Article)
+                            {
+                                <p>@item.Explanation</p>
+                                <p>@item.Explanation</p>
+                                <blockquote class="shortcodes">
+                                    <div class="blockquote-icon">
+                                        <img src="~/Image//core-img/quote.png" alt="">
+                                    </div>
+                                    <div class="blockquote-text">
+                                        <h5>That’s not to say you’ll have the exact same thing if you stop by: the restaurant’s menus change constantly, based on seasonal ingredients.</h5>
+                                        <h6>Ollie Schneider - <span>CEO Colorlib</span></h6>
+                                    </div>
+                                </blockquote>
+                                <p>@item.Explanation</p>
+                                <div class="row">
+                                    @foreach (var item2 in Model.Images)
+                                    {
+                                        <div class="col-12 col-md-6">
+                                            <img class="mb-30" src="@item2.name" alt="" style="width: auto; height: 219px;">
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            <div class="post-tags-share">
+                                <ol class="popular-tags d-flex flex-wrap">
+                                    @foreach (var item3 in Model.Category)
+                                    {
+                                        <li><a href="/Category/Index/@item3.Id">@item3.Name</a></li>
+                                    }
+                                </ol>
+                            </div>
+                            <!-- Related Post Area -->
+                            <div class="related-posts clearfix">
+                                <!-- Headline -->
+                                <h4 class="headline">en çok okunanlar</h4>
+                                <div class="row">
+                                    @Html.Action("MostRead", "Partial")
+                                </div>
+                            </div>
+
+                            <div class="comment_area clearfix">
+                                <h4 class="headline">@Model.Comment.Where(x => x.Status == true).Count() Yorum</h4>
+                                <ol>
+                                    <!-- Single Comment Area -->
+                                    <li class="single_comment_area">
+                                        @if (Model.Comment.Count() == 0)
+                                        {
+                                            <div class="comment-content">
+                                                <p>Bu içerikte yorum bulunmamaktadır. Hadi ilk yorumu sen yap.</p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            foreach (var item4 in Model.Comment)
+                                            {
+                                                <div class="comment-wrapper d-flex">
+                                                    <!-- Comment Meta -->
+                                                    <div class="comment-author">
+                                                        <img src="~/Image/blog-img/9.jpg" alt="">
+                                                    </div>
+                                                    <!-- Comment Content -->
+                                                    <div class="comment-content">
+                                                        <span class="comment-date">@item4.Date.Value.ToString("MMM dd, yyyy")</span>
+                                                        <h5>@item4.NameSurName</h5>
+                                                        <p>@item4.Message</p>
+                                                        <a href="#">Beğen</a>
+                                                        <a class="active" href="/Partial/Reply/@item4.Id" data-toggle="modal" data-target="#Cevap">Cevap</a>
+                                                        @Html.Action("Reply", "Partial")
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        }
+                                        @if (Model.Reply == null)
+                                        {
+
+                                        }
+                                        else
+                                        {
+                                            foreach (var item5 in Model.Reply)
+                                            {
+                                                <ol class="children">
+                                                    <li class="single_comment_area">
+                                                        <div class="comment-wrapper d-flex">
+                                                            <!-- Comment Meta -->
+                                                            <div class="comment-author">
+                                                                <img src="~/Image/blog-img/10.jpg" alt="">
+                                                            </div>
+                                                            <!-- Comment Content -->
+                                                            <div class="comment-content">
+                                                                <span class="comment-date">@item5.Date.Value.ToString("MMM dd, yyyy")</span>
+                                                                <h5>@item5.NameSurName</h5>
+                                                                <p>@item5.Message</p>
+                                                                <a href="#">Beğen</a>
+                                                                <a class="active" href="">
+                                                                    Cevapla
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            }
+                                        }
+                                    </li>
+                                </ol>
+                            </div>
+                            <!-- Leave A Comment -->
+                            @Html.Action("LeaveaComment", "Partial")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

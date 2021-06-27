@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3e8eaa541f49497aa37d8907e6671a95" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="GameBlogSiteModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.About" Width="1.5" PointX="2.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Article" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Category" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Contact" Width="1.5" PointX="4.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.ContactForm" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Footer" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Log" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Reply" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Role" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Slider" Width="1.5" PointX="6.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Writer" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Article_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Article_Writer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Log_Article" ManuallyRouted="false" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_dbo_Writer_dbo_Role_RoleId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Images" Width="1.5" PointX="7.5" PointY="13.875" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Image_Article" />
+        <EntityTypeShape EntityType="GameBlogSiteModel.Comment" Width="1.5" PointX="7.5" PointY="3.375" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Comment_Article" />
+        <AssociationConnector Association="GameBlogSiteModel.FK_Reply_Comment" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

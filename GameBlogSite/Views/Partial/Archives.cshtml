@@ -1,0 +1,15 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Article>
+
+<div class="single-widget-area mb-30">
+    <!-- Title -->
+    <div class="widget-title">
+        <h6>Arşivler</h6>
+    </div>
+    <ol class="nikki-archives">
+        @foreach (var item in Model)
+        {
+            <li><a href="#">@item.Date.Value.ToString("MMMM-yyyy")</a></li>
+        }
+    </ol>
+</div>

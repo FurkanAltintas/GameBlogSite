@@ -1,0 +1,22 @@
+﻿@model GameBlogSite.Models.EntityFramework.Reply
+
+<div class="modal" id="Comment">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Cevap</h2>
+            </div>
+            @using (Html.BeginForm("Comment", "Partial",FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <label>
+                        Mesaj
+                    </label>
+                    @Html.TextAreaFor(x => x.Message, 10, 1, new { @class = "form-control", @placeholder = "Mesaj" })
+                    <br />
+                    <button type="submit" class="btn btn-success">Gönder</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

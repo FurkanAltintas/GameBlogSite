@@ -18,18 +18,22 @@ namespace GameBlogSite.Models.EntityFramework
         public Comment()
         {
             this.Reply = new HashSet<Reply>();
+            this.CommentLike = new HashSet<CommentLike>();
         }
     
         public int Id { get; set; }
         public Nullable<int> ArticleId { get; set; }
         public string NameSurName { get; set; }
+        public string Image { get; set; }
         public string Email { get; set; }
         public string Message { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<bool> Status { get; set; }
     
-        public virtual Article Article { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reply> Reply { get; set; }
+        public virtual Article Article { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentLike> CommentLike { get; set; }
     }
 }

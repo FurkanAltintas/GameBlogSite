@@ -1,0 +1,51 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Comment>
+
+<div class="col-md-6 col-lg-6 col-sm-12">
+    <div class="white-box">
+        <h3 class="box-title">Son Yorumlar</h3>
+        <div class="comment-center">
+            @if (Model.Count() == 0)
+            {
+                <h5 style="margin-left: 25px;">Yorum bulunmamaktadır.</h5>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="comment-body">
+                        <div class="user-img"> <img src="@item.Image" alt="user" class="img-circle"></div>
+                        <div class="mail-contnet">
+                            <h5>@item.NameSurName</h5>
+                            <span class="mail-desc">@item.Message</span>
+
+                            @if (item.Status == true)
+                            {
+                                <span class="label label-rounded label-success">@item.Article.Title (@item.Article.Category.Name)</span>
+                            }
+                            else
+                            {
+                                <span class="label label-rounded label-danger">@item.Article.Title (@item.Article.Category.Name)</span>
+                            }
+
+                            <a href="/Admin/CommentDelete/@item.Id" class="action" data-toggle="tooltip" data-original-title="Sil"><i class="ti-close text-danger"></i></a>
+                            @if (item.Status == true)
+                            {
+                                <a href="/Admin/CommentPassive/@item.Id" class="action" data-toggle="tooltip" data-original-title="Pasif Et"><i class="ti-na text-dark"></i></a>
+                            }
+                            else
+                            {
+                                <a href="/Admin/CommentActive/@item.Id" class="action" data-toggle="tooltip" data-original-title="Aktif Et"><i class="ti-check text-success"></i></a>
+                            }
+                            <a href="/Admin/CommentDetail/@item.Id" class="action" data-toggle="tooltip" data-original-title="Yoruma Git"><i class="ti-help text-warning"></i></a>
+                            <a href="/Admin/CommentReply/@item.Id" class="action" data-toggle="modal" data-target="#Comment" data-original-title="Cevapla"><i class="ti-comment text-primary"></i></a>
+                            <span class="time pull-right">@item.Date.Value.ToString("dd MMM, yyyy")</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@Html.Action("Comment", "Partial")

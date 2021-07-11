@@ -1,0 +1,40 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Skill>
+
+@if (Model.Count() == 0)
+{
+    <h5>Yetenek Seti Bulunmamaktadır</h5>
+}
+else
+{
+    foreach (var item in Model)
+    {
+        <h5>@item.Name <span class="pull-right">@item.SLevel%</span></h5>
+        if (item.SLevel >= 80)
+        {
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.SLevel" aria-valuemin="0" aria-valuemax="100" style="width:@item.SLevel%;"> <span class="sr-only">@item.SLevel% Tamamlandı</span> </div>
+            </div>
+        }
+        if (item.SLevel >= 60 && item.SLevel < 80)
+        {
+            <div class="progress">
+                <div class="progress-bar progress-bar-custom" role="progressbar" aria-valuenow="@item.SLevel" aria-valuemin="0" aria-valuemax="100" style="width:@item.SLevel%;"> <span class="sr-only">@item.SLevel% Tamamlandı</span> </div>
+            </div>
+        }
+        if (item.SLevel >= 40 && item.SLevel < 60)
+        {
+            <div class="progress">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.SLevel" aria-valuemin="0" aria-valuemax="100" style="width:@item.SLevel%;"> <span class="sr-only">@item.SLevel% Tamamlandı</span> </div>
+            </div>
+        }
+        if (item.SLevel >= 20 && item.SLevel < 40)
+        {
+            <div class="progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.SLevel" aria-valuemin="0" aria-valuemax="100" style="width:@item.SLevel%;"> <span class="sr-only">@item.SLevel% Tamamlandı</span> </div>
+            </div>
+        }
+
+    }
+}
+

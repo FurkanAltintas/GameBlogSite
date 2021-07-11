@@ -1,0 +1,34 @@
+﻿@model GameBlogSite.Models.EntityFramework.Reply
+
+@{
+    ViewBag.Title = "Yoruma Cevap";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="white-box">
+        <h3 class="box-title">Sohbet</h3>
+        <div class="chat-box">
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                @Html.Action("CommentMes","Admin")
+                <div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 332px;"></div>
+                <div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+
+            @using (Html.BeginForm("CommentReply", "Admin", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            @Html.TextBoxFor(x => x.Message, new { @class = "form-control", @placeholder = "Mesajını yaz" })
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Gönder</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

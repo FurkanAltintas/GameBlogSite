@@ -13,6 +13,11 @@ namespace GameBlogSite.Models
         public IEnumerable<Comment> Comment { get; set; }
         public IEnumerable<Images> Images { get; set; }
         public IEnumerable<Reply> Reply { get; set; }
+        public IEnumerable<Tag> Tag { get; set; }
+        public IEnumerable<Slider> Slider { get; set; }
+
+        public Comment comment { get; set; }
+        public Reply reply { get; set; }
 
     }
 }

@@ -17,7 +17,7 @@ namespace GameBlogSite.Controllers
             ViewBag.Category = categoryId.Name;
             ViewBag.Count = categoryId.Id;
 
-            var category = db.Article.Where(x => x.CategoryId == id).ToList();
+            var category = db.Article.Where(x => x.CategoryId == id && x.Status == true).ToList();
             return View(category);
         }
     }

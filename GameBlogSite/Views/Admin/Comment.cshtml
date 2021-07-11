@@ -1,0 +1,53 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Comment>
+
+@{
+    ViewBag.Title = "Comment";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 1;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <ul class="timeline">
+                @foreach (var item in Model)
+                {
+                    i++;
+
+                    if (i % 2 == 0)
+                    {
+                        <li>
+                            <div class="timeline-badge success"><img class="img-responsive" alt="user" src="@item.Image"> </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="timeline-title">@item.NameSurName</h4>
+                                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> @item.Date.Value.ToString("dd MMM yyyy") @item.Date.Value.ToString("HH:mm")</small> </p>
+                                </div>
+                                <div class="timeline-body">
+                                    <p>@item.Message</p>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="timeline-inverted">
+                            <div class="timeline-badge warning"><img class="img-responsive" alt="user" src="@item.Image"> </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="timeline-title">@item.NameSurName</h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p><img class="img-responsive" alt="user" src="@item.Article.Image"></p>
+                                    <p>@item.Message</p>
+                                </div>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

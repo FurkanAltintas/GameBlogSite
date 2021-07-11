@@ -15,8 +15,11 @@ namespace GameBlogSite.Models.EntityFramework
     public partial class Slider
     {
         public int Id { get; set; }
+        public Nullable<int> ArticleId { get; set; }
         public string Image { get; set; }
         public string Title { get; set; }
         public string Explanation { get; set; }
+    
+        public virtual Article Article { get; set; }
     }
 }

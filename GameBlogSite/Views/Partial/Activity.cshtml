@@ -1,0 +1,78 @@
+﻿@model GameBlogSite.Models.ArticleComments
+
+@{
+    int i = 1;
+}
+<div class="tab-pane active" id="home">
+    @if (Model.Comment.Count() == 0)
+    {
+        <h5>Hiç bir aktivite bulunmamaktadır</h5>
+    }
+    else
+    {
+        <div class="steamline">
+            @foreach (var item in Model.Comment)
+            {
+                i++;
+
+                if (i % 2 == 0)
+                {
+                    <div class="sl-item">
+                        <div class="sl-left"> <img src="@item.Image" alt="user" class="img-circle"> </div>
+                        <div class="sl-right">
+                            <div class="m-l-40">
+                                <a href="#" class="text-info">@item.NameSurName</a> <span class="sl-date">@item.Date.Value.ToString("dd MMM, yyyy")</span>
+                                <p>@item.Message <a href="/Article/Index/@item.Article.Id"> (@item.Article.Title)</a></p>
+                                <div class="m-t-20 row">
+                                    @if (Model.Images.Where(x => x.ArticleId == item.ArticleId).Count() == 0)
+                                    {
+                                        <h5 style="margin-left:10px;">Görsel içeriği bulunmamaktadır</h5>
+                                    }
+                                    else
+                                    {
+                                        foreach (var item2 in Model.Images.Where(x => x.ArticleId == item.ArticleId).Take(3))
+                                        {
+                                            <img src="@item2.name" alt="user" class="col-md-3 col-xs-12">
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else if (i % 3 == 0)
+                {
+                    <div class="sl-item">
+                        <div class="sl-left"> <img src="@item.Image" alt="user" class="img-circle"> </div>
+                        <div class="sl-right">
+                            <div class="m-l-40">
+                                <a href="#" class="text-info">@item.NameSurName</a> <span class="sl-date">@item.Date.Value.ToString("dd MMM, yyyy")</span>
+                                <div class="m-t-20 row">
+                                    <div class="col-md-2 col-xs-12"><img src="@item.Article.Image" alt="user" class="img-responsive"></div>
+                                    <div class="col-md-9 col-xs-12">
+                                        <p>@item.Message</p>
+                                        <a href="/Article/Index/@item.ArticleId" class="btn btn-success"> @item.Article.Title</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    i += 3;
+                }
+                else if (i % 7 == 0)
+                {
+                    <div class="sl-item">
+                        <div class="sl-left"> <img src="@item.Image" alt="user" class="img-circle"> </div>
+                        <div class="sl-right">
+                            <div class="m-l-40">
+                                <a href="#" class="text-info">@item.NameSurName</a> <span class="sl-date">@item.Date.Value.ToString("dd MMM, yyyy")</span>
+                                <p class="m-t-10">@item.Message</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            <hr>
+        </div>
+    }
+</div>

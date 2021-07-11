@@ -1,0 +1,54 @@
+﻿@model GameBlogSite.Models.EntityFramework.Member
+
+@{
+    ViewBag.Title = "Kayıt Ol";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal form-material" }))
+{
+    <h3 class="box-title m-b-20">Kayıt Ol</h3>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @placeholder = "Ad" })
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Kullanıcı adı" })
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Email", @type = "email" })
+        </div>
+    </div>
+    <div class="form-group ">
+        <div class="col-xs-12">
+            @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Şifre" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-12">
+            @Html.PasswordFor(x => x.RPassword, new { @class = "form-control", @placeholder = "Şifre Tekrar" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12">
+            <div class="checkbox checkbox-primary p-t-0">
+                <input id="checkbox-signup" type="checkbox" checked="@Model.Contract">
+                <label for="checkbox-signup"><a href="#">Üyelik sözleşmesini</a> kabul ediyorum. </label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group text-center m-t-20">
+        <div class="col-xs-12">
+            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Kayıt Ol</button>
+        </div>
+    </div>
+    <div class="form-group m-b-0">
+        <div class="col-sm-12 text-center">
+            <p>Zaten hesabınız var mı? <a href="login.html" class="text-primary m-l-5"><b>Giriş Yap</b></a></p>
+        </div>
+    </div>
+}

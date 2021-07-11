@@ -1,0 +1,101 @@
+﻿@model GameBlogSite.Models.ArticleComments
+
+
+@{
+    ViewBag.Title = "Slider Detayı";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    string nameSurname = ViewBag.nameSurname;
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            @foreach (var item in Model.Article)
+            {
+                <div class="form-group">
+                    <label for="exampleInputuname">Kategori Adı</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-crown"></i></div>
+                        @Html.TextBoxFor(x => item.Category.Name, new { @class = "form-control", @placeholder = "Kategori Adı", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Yazar Ad Soyad</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-user"></i></div>
+                        @Html.TextBoxFor(x => nameSurname, new { @class = "form-control", @placeholder = "İçerik", @disabled = "disabled" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd1">Başlık</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-marker"></i></div>
+                        @Html.TextBoxFor(x => item.Title, new { @class = "form-control", @placeholder = "Kategori Adı", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd1">İçerik</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-receipt"></i></div>
+                        @Html.TextAreaFor(x => item.Explanation, 15, 1, new { @class = "form-control", @placeholder = "İçerik Adı", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd1">Okunma Sayısı</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-eye"></i></div>
+                        @Html.TextBoxFor(x => item.ReadingCount, new { @class = "form-control", @placeholder = "Okunma Sayısı", @disabled = "disabled" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd2">Ana Resim</label>
+                    <div class="input-group" align="center">
+                        <div class="input-group-addon"><i class="ti-image"></i></div>
+                        <img src="@item.Image" class="form-control" style="width: 1583px; height: auto;" />
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <label for="exampleInputpwd2">Alt Resimler</label>
+                <div class="input-group" align="center">
+                    @if (Model.Images.Count() == 0)
+                    {
+                        <h5>Hiç alt resim bulunmamaktadır</h5>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Images)
+                        {
+                            <img src="@item.name" class="form-control col-md-3 col-xs-12" style="width: 527.6px; height: auto;" />
+                        }
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputpwd2">Taglar</label>
+                <div class="post-tags-share">
+                    @if (Model.Tag.Count() == 0)
+                    {
+                        <h5>Hiç etiket bulunmamaktadır</h5>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Tag)
+                        {
+                            <div class="btn btn-default btn-outline btn-rounded waves-effect waves-light">
+                                <span><i class="m-r-5"></i>@item.Name</span>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+
+            <a href="@Url.Action("Slider","Admin")" class="btn btn-inverse waves-effect waves-light">Geri</a>
+        </div>
+    </div>
+</div>
+

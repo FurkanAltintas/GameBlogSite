@@ -1,0 +1,61 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Tag>
+
+@{
+    int i = 0;
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Tag bulunmamaktadır.
+    </div>
+}
+else
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        @Model.Count() Tane tag bulunmaktadır.
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Etiket Adı</th>
+                                <th>Tarih</th>
+                                <th>Durum</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                i++;
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.Name </td>
+                                    <td>@item.Date.Value.ToString("dd MMM yyyy") </td>
+                                    <td>
+                                        @if (item.Status == true)
+                                        {
+                                            <span class="label label-success">Aktif</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="label label-danger">Pasif</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}

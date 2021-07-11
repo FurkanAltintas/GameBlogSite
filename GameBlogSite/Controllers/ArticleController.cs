@@ -15,7 +15,7 @@ namespace GameBlogSite.Controllers
         // GET: Article
         public ActionResult Index(int? id)
         {
-            Reply r = new Reply();
+            Startup r = new Startup();
 
             Comment c = new Comment();
 
@@ -31,7 +31,7 @@ namespace GameBlogSite.Controllers
 
             }
 
-            ac.Article = db.Article.Where(x => x.Id == id).ToList();
+            ac.Article = db.Article.Where(x => x.Id == id && x.Status == true).ToList();
             ac.Comment = db.Comment.Where(x => x.ArticleId == id && x.Status == true).ToList();
 
             foreach (var item in ac.Comment)
@@ -40,6 +40,7 @@ namespace GameBlogSite.Controllers
             }
 
             ac.Category = db.Category.Where(x => x.Status == true).ToList();
+            ac.Tag = db.Tag.Where(x => x.ArticleId == id && x.Status == true).ToList();
             ac.Images = db.Images.Where(x => x.ArticleId == id).Take(2).ToList();
             article.ReadingCount++;
             db.SaveChanges();

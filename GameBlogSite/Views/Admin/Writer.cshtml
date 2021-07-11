@@ -1,0 +1,46 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model  List<Writer>
+
+@{
+    ViewBag.Title = "Yazar Listesi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Yazar bulunmamaktadır.
+    </div>
+}
+else
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        @Model.Count() Tane yazar bulunmaktadır.
+    </div>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-4">
+                <div class="white-box">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 text-center"><a href="/Admin/WriterDetail/@item.Id"><img src="@item.Image" alt="user" class="img-circle img-responsive" style="width: 151px; height: 151px;"></a></div>
+                        <div class="col-md-8 col-sm-8">
+                            <h3 class="box-title m-b-0">@item.Name @item.SurName</h3>
+                            <small>@item.Designation</small>
+                            <p>
+                            </p><address>
+                                <a href="@item.GitHub">Github</a><br><br>
+                                <abbr title="Email">E:</abbr> @item.Email
+                            </address>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+

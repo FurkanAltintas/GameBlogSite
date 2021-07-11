@@ -1,0 +1,23 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Comment>
+
+@{
+    ViewBag.Title = "İçerik Yorumları";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <img class="img-responsive" alt="user" src="@item.Article.Image">
+            <div class="white-box">
+                <div class="text-muted"><span class="m-r-10">@item.Date.Value.ToString("MMM dd yyyy")</span> <a class="text-muted m-l-10" href="#"><i class="fa fa-heart-o"></i> 38</a></div>
+                <h3 class="m-t-20 m-b-20">@item.Article.Title</h3>
+                <h5 class="text-success">Yorum Yapan: @item.NameSurName</h5>
+                <p>@item.Message</p>
+                <a href="/Admin/CommentReply/@item.Id" class="btn btn-success btn-rounded waves-effect waves-light m-t-20">Cevap Ver</a>
+            </div>
+        </div>
+    }
+</div>

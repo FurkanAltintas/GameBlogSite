@@ -17,9 +17,12 @@ namespace GameBlogSite.Models.EntityFramework
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Article()
         {
-            this.Log = new HashSet<Log>();
-            this.Images = new HashSet<Images>();
+            this.ArticleLike = new HashSet<ArticleLike>();
             this.Comment = new HashSet<Comment>();
+            this.Images = new HashSet<Images>();
+            this.Log = new HashSet<Log>();
+            this.Slider1 = new HashSet<Slider>();
+            this.Tag = new HashSet<Tag>();
         }
     
         public int Id { get; set; }
@@ -31,14 +34,22 @@ namespace GameBlogSite.Models.EntityFramework
         public string Explanation { get; set; }
         public bool IsActive { get; set; }
         public int ReadingCount { get; set; }
+        public Nullable<bool> Slider { get; set; }
+        public Nullable<bool> Status { get; set; }
     
-        public virtual Category Category { get; set; }
         public virtual Writer Writer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Log> Log { get; set; }
+        public virtual ICollection<ArticleLike> ArticleLike { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Images> Images { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ICollection<Log> Log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Slider> Slider1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tag { get; set; }
+        public virtual Category Category { get; set; }
     }
 }

@@ -1,0 +1,52 @@
+﻿@model GameBlogSite.Models.EntityFramework.Article
+
+@{
+    ViewBag.Title = "İçerik Ekle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        @using (Html.BeginForm("ArticleAdd", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="white-box">
+                <div class="form-group">
+                    <label for="exampleInputuname">Başlık</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-crown"></i></div>
+                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Başlık" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">İçerik</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-book"></i></div>
+                        @Html.TextAreaFor(x => x.Explanation, 10, 1, new { @class = "form-control", @placeholder = "İçerik" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd1">Kategori</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-package"></i></div>
+                        @Html.DropDownList("categoryId", null, "Kategori Seçiniz", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputpwd2">Resim</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="ti-image"></i></div>
+                        @Html.TextBoxFor(x => x.Image, new { @class = "form-control", @type = "file" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Ekle</button>
+                    <a href="@Url.Action("Article","Admin")" class="btn btn-inverse waves-effect waves-light">Geri</a>
+                </div>
+                <div class="form-group">
+                    @ViewBag.UploadStatus
+                </div>
+            </div>
+        }
+    </div>
+</div>

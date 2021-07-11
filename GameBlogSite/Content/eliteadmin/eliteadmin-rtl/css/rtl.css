@@ -1,0 +1,473 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700,800);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900);
+@import url(https://fonts.googleapis.com/css?family=Poppins:400,500,300,600,700);
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Normal Color*/
+/*Border radius*/
+/*Preloader*/
+.preloader {
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  position: fixed;
+  z-index: 99999;
+  background: #fff;
+}
+.preloader .cssload-speeding-wheel {
+  position: absolute;
+  top: calc(50% - 3.5px);
+  left: calc(50% - 3.5px);
+}
+/* This is for popins font for firefox */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v1/2fCJtbhSlhNNa6S2xlh9GyEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* This is for popins font for firefox */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v1/UGh2YG8gx86rRGiAZYIbVyEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* This is for popins font for firefox */
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/poppins/v1/yQWaOD4iNU5NTY0apN-qj_k_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+.text-left {
+  text-align: right;
+}
+.text-right {
+  text-align: left;
+}
+.pull-left,
+.navbar-left,
+.navbar-top-links > li {
+  float: right !important;
+}
+.pull-right,
+.navbar-right {
+  float: left !important;
+}
+.m-r-5 {
+  margin-left: 5px !important;
+}
+.m-r-10 {
+  margin-left: 10px !important;
+}
+.m-r-15 {
+  margin-left: 15px !important;
+}
+.m-r-20 {
+  margin-left: 20px !important;
+}
+.m-r-30 {
+  margin-left: 30px !important;
+}
+.m-r-40 {
+  margin-left: 40px !important;
+}
+.m-l-5 {
+  margin-right: 5px !important;
+}
+.m-l-10 {
+  margin-right: 10px !important;
+}
+.m-l-15 {
+  margin-right: 15px !important;
+}
+.m-l-20 {
+  margin-right: 20px !important;
+}
+.m-l-30 {
+  margin-right: 30px !important;
+}
+.m-l-40 {
+  margin-right: 40px !important;
+}
+/*Header*/
+.nav,
+.navbar-top-links {
+  padding-right: 0px;
+}
+.bg-title .breadcrumb {
+  float: left;
+}
+.dropdown-tasks li a div p {
+  text-align: right;
+}
+.message-center .user-img {
+  float: right;
+  margin: 0 0px 15px 10px;
+}
+.message-center .mail-contnet {
+  text-align: right;
+}
+.drop-title {
+  text-align: center;
+}
+.top-left-part {
+  float: right;
+}
+/*Navigation*/
+#side-menu > li > a {
+  padding: 15px 15px 15px 30px;
+}
+.sidebar .nav-second-level li a {
+  padding-left: 0px;
+  padding-right: 39px;
+}
+.sidebar .arrow {
+  left: 15px;
+  right: inherit;
+}
+.nav-small-cap {
+  margin: 20px -15px 0 0px;
+}
+.dropdown-menu li a i {
+  display: inline-block;
+}
+/*----Widgets----*/
+/* .col-in-row */
+.row-in-br {
+  border-right: 0px;
+  border-left: 1px solid rgba(120, 130, 140, 0.13);
+}
+/*Comment section*/
+.comment-center .mail-contnet {
+  padding-left: 0px;
+  padding-right: 15px;
+}
+.mail-contnet a.action {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+/*Chat*/
+.chat-list .chat-body {
+  text-align: left;
+}
+/*slider*/
+.twi-user img {
+  margin-right: 0px;
+  margin-left: 20px;
+}
+/*Task list*/
+.list-task li div label span:first-child {
+  float: right;
+  margin-left: 5px;
+}
+/*Checkbox*/
+.checkbox {
+  padding-left: 20px;
+}
+.checkbox label {
+  display: inline-block;
+  padding-left: 5px;
+  position: relative;
+}
+.checkbox label::before {
+  right: 10px;
+  margin-right: -10px;
+}
+.checkbox label::after {
+  right: 10px;
+  margin-right: -10px;
+  padding-right: 3px;
+}
+.radio label::before {
+  right: 0px;
+  margin-right: -1px;
+}
+.radio label::after {
+  right: 5px;
+  margin-right: -1px;
+}
+/*Feeds*/
+.feeds li span {
+  float: left;
+}
+.feeds li > div {
+  margin-right: 0px;
+  margin-left: 5px;
+}
+/*Activity*/
+.steamline {
+  border-left: 0px;
+  border-right: 1px solid rgba(120, 130, 140, 0.13);
+  margin-left: 0px;
+  margin-right: 20px;
+}
+.steamline .sl-left {
+  margin-left: 15px;
+  margin-right: -20px;
+  float: right;
+}
+/*Panels*/
+.panel .panel-action {
+  float: left;
+}
+.panel .panel-action a {
+  display: inline-block;
+}
+.panel .panel-heading a i {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+/*Buttons*/
+.btn-label {
+  margin: -6px -14px -6px 12px;
+}
+/*tabs*/
+.vtabs .tabs-vertical {
+  border-right: 0px;
+  border-left: 1px solid rgba(120, 130, 140, 0.13);
+}
+.customvtab .tabs-vertical li.active a,
+.customvtab .tabs-vertical li.active a:hover,
+.customvtab .tabs-vertical li.active a:focus {
+  border-right: 0px;
+  border-left: 2px solid #ff6849;
+  margin-left: -1px;
+  margin-right: 0px;
+}
+/*Carousel*/
+.owl-carousel.owl-loaded {
+  direction: ltr;
+}
+.carousel-control.left {
+  left: 0px;
+  right: auto;
+}
+/*Dropdown menu*/
+.navbar-right .dropdown-menu,
+.navbar-top-links .dropdown-user,
+.dropdown-menu-right {
+  right: auto;
+  left: 0px;
+}
+/*popover*/
+.demo-tooltip .tooltip,
+.demo-popover .popover {
+  margin-right: 0px;
+  margin-left: 25px;
+}
+/*Color Picker*/
+.asColorPicker-trigger {
+  right: inherit;
+  left: -35px;
+}
+.datepicker-dropdown {
+  right: auto;
+}
+/*wizard*/
+.wizard-steps > li span {
+  margin-left: 8px;
+}
+/*Pricing*/
+.pricing-body h2 span {
+  margin-right: -15px;
+}
+/*Side panel*/
+.shw-rside {
+  left: 0px;
+  right: inherit;
+}
+.chatonline img {
+  float: right;
+  margin-left: 10px;
+  margin-right: 0px;
+}
+.right-sidebar .rpanel-title span {
+  float: left;
+}
+/*----bootstrap----*/
+h1 small,
+.h1 small,
+h2 small,
+.h2 small,
+h3 small,
+.h3 small,
+h1 .small,
+.h1 .small,
+h2 .small,
+.h2 .small,
+h3 .small,
+.h3 .small {
+  display: inline-block;
+}
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  margin-left: 0px;
+  margin-right: -20px;
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  text-align: right;
+}
+.bootstrap-select > .dropdown-toggle {
+  padding-left: 25px;
+  padding-right: 15px;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+  left: 12px;
+  right: auto;
+}
+.popover {
+  direction: rtl;
+  left: 0;
+  right: auto;
+}
+/*Ipad*/
+@media (min-width: 768px) {
+  #page-wrapper {
+    position: inherit;
+    margin: 0px 220px 0px 0px;
+  }
+  /*If body has fix sidebar class*/
+  .fix-sidebar .navbar-left {
+    margin-right: 220px;
+  }
+  .footer {
+    right: 220px;
+    left: 0;
+  }
+  .content-wrapper .sidebar #side-menu > li > a {
+    padding: 15px 20px 15px 20px;
+  }
+  .navbar-right .dropdown-menu {
+    left: 0;
+    right: auto;
+  }
+  /*If body has content-wrapper*/
+  .content-wrapper #page-wrapper {
+    margin-right: 60px;
+    margin-left: 0px;
+  }
+  .content-wrapper .navbar-left {
+    margin-right: 0px;
+  }
+  .content-wrapper .footer {
+    right: 60px;
+  }
+  .content-wrapper .sidebar {
+    width: 60px;
+  }
+  .content-wrapper .sidebar .hide-menu {
+    display: none;
+    width: 180px;
+    right: 60px;
+  }
+  .content-wrapper .sidebar .nav-second-level {
+    position: absolute;
+    right: 60px;
+    background: #f7fafc;
+    width: 240px;
+    opacity: 1;
+    padding-bottom: 20px;
+    display: none;
+  }
+  .content-wrapper .sidebar .nav-second-level > li > a {
+    padding-right: 30px;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    margin-right: auto;
+  }
+  .mail_listing {
+    border-left: 1px solid rgba(120, 130, 140, 0.13);
+    padding-right: 20px;
+  }
+  .inbox-panel {
+    padding-left: 20px;
+  }
+  .top-minus {
+    margin-top: -62px;
+    float: left;
+  }
+  .fix-sidebar.content-wrapper .navbar-left,
+  .content-wrapper.fix-sidebar .navbar-left {
+    margin-right: 60px!important;
+  }
+}
+@media (max-width: 1024px) {
+  .b-r-none {
+    border-left: 0px;
+  }
+}
+/*Phone*/
+@media (max-width: 767px) {
+  .navbar-top-links {
+    display: inline-block;
+  }
+  .navbar-top-links .profile-pic img {
+    margin-left: 0px;
+  }
+  .top-left-part {
+    width: 60px;
+  }
+  .navbar-top-links li:last-child {
+    margin-left: 0px;
+  }
+  .navbar-top-links .dropdown-messages,
+  .navbar-top-links .dropdown-tasks,
+  .navbar-top-links .dropdown-alerts {
+    width: 260px;
+  }
+  .row-in-br {
+    border-right: 0px;
+    border-bottom: 1px solid rgba(120, 130, 140, 0.13);
+  }
+  .bg-title .breadcrumb {
+    float: right;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  /*Timeline*/
+  ul.timeline:before {
+    right: 40px;
+  }
+  ul.timeline > li > .timeline-panel {
+    width: calc(10%);
+    width: -moz-calc(10%);
+    width: -webkit-calc(10%);
+  }
+  ul.timeline > li > .timeline-badge {
+    top: 16px;
+    right: 15px;
+    margin-right: 0;
+  }
+  ul.timeline > li > .timeline-panel {
+    float: left;
+  }
+  ul.timeline > li > .timeline-panel:before {
+    right: auto;
+    right: -15px;
+    border-left-width: 15px;
+    border-right-width: 0;
+  }
+  ul.timeline > li > .timeline-panel:after {
+    right: auto;
+    right: -14px;
+    border-left-width: 14px;
+    border-right-width: 0;
+  }
+  .wizard-steps > li {
+    display: block;
+  }
+  .dropdown .mailbox,
+  .dropdown .dropdown-tasks {
+    right: -94px;
+  }
+}

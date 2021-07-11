@@ -1,0 +1,52 @@
+﻿@model GameBlogSite.Models.WriterChatMessage
+
+<div class="chat-box">
+    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+        <ul class="chat-list slimscroll p-t-30" style="overflow: hidden; width: auto; height: 527px;">
+            @if (ViewBag.Key != null)
+            {
+                foreach (var item in Model.WriterChat)
+                {
+                    <li>
+                        <div class="chat-image"> <img alt="male" src="@item.Writer.Image"> </div>
+                        <div class="chat-body">
+                            <div class="chat-text">
+                                <h4>@item.Writer.Name</h4>
+                                <p> @item.Message </p>
+                                <b>@item.Date.Value.ToString("HH:mm")</b>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+                foreach (var item in Model.WriterChatReply)
+                {
+                    <li class="odd">
+                        <div class="chat-image"> <img alt="Female" src="@item.Writer.Image"> </div>
+                        <div class="chat-body">
+                            <div class="chat-text">
+                                <h4>@item.Writer.Name</h4>
+                                <p> @item.Message </p>
+                                <b>@item.Date.Value.ToString("HH:mm")</b>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+            else
+            {
+                <h5>Sohbet Başlat</h5>
+            }
+
+
+
+        </ul><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 527px;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+    <div class="row send-chat-box">
+        <div class="col-sm-12">
+            <textarea class="form-control" placeholder="Type your message"></textarea>
+            <div class="custom-send"><a href="javacript:void(0)" class="cst-icon" data-toggle="tooltip" title="" data-original-title="Insert Emojis"><i class="ti-face-smile"></i></a> <a href="javacript:void(0)" class="cst-icon" data-toggle="tooltip" title="" data-original-title="File Attachment"><i class="fa fa-paperclip"></i></a> <button class="btn btn-danger btn-rounded" type="button">Send</button></div>
+
+        </div>
+    </div>
+</div>

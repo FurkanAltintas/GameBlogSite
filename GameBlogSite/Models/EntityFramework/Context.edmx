@@ -44,6 +44,17 @@
           <Property Name="Explanation" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="ReadingCount" Type="int" Nullable="false" />
+          <Property Name="Slider" Type="bit" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="ArticleLike">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -61,8 +72,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ArticleId" Type="int" />
           <Property Name="NameSurName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
           <Property Name="Message" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="CommentLike">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommentId" Type="int" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="NumberofLikes" Type="int" />
           <Property Name="Date" Type="datetime" />
           <Property Name="Status" Type="bit" />
         </EntityType>
@@ -111,10 +134,29 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ArticleId" Type="int" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Explanation" Type="nvarchar" MaxLength="250" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="About" Type="nvarchar" MaxLength="250" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Password" Type="nvarchar" MaxLength="25" />
+          <Property Name="RPassword" Type="nvarchar" MaxLength="25" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Contract" Type="bit" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <EntityType Name="Reply">
           <Key>
@@ -135,11 +177,21 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+          <Property Name="SLevel" Type="int" />
+        </EntityType>
         <EntityType Name="Slider">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="150" />
           <Property Name="Title" Type="nvarchar" MaxLength="150" />
           <Property Name="Explanation" Type="nvarchar" MaxLength="250" />
@@ -154,15 +206,29 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="Writer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="LocationId" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="SurName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
           <Property Name="About" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
           <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
@@ -170,6 +236,29 @@
           <Property Name="Facebook" Type="nvarchar" MaxLength="50" />
           <Property Name="Instagram" Type="nvarchar" MaxLength="50" />
           <Property Name="Twitter" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="WriterChat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="WriterChatReply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WriterChatId" Type="int" />
+          <Property Name="WriterId" Type="int" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <Association Name="FK_Article_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
@@ -195,6 +284,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ArticleLike_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="ArticleLike" Type="Self.ArticleLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleLike">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_Article">
           <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -204,6 +305,30 @@
             </Principal>
             <Dependent Role="Comment">
               <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentLike_Comment">
+          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
+          <End Role="CommentLike" Type="Self.CommentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentLike">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentLike_Member">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="CommentLike" Type="Self.CommentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentLike">
+              <PropertyRef Name="MemberId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -257,22 +382,101 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Skill_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="0..1" />
+          <End Role="Skill" Type="Self.Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Slider_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Slider" Type="Self.Slider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Slider">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Article">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterChat_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="0..1" />
+          <End Role="WriterChat" Type="Self.WriterChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChat">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterChatReply_Writer">
+          <End Role="Writer" Type="Self.Writer" Multiplicity="0..1" />
+          <End Role="WriterChatReply" Type="Self.WriterChatReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChatReply">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterChatReply_WriterChat">
+          <End Role="WriterChat" Type="Self.WriterChat" Multiplicity="0..1" />
+          <End Role="WriterChatReply" Type="Self.WriterChatReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WriterChat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChatReply">
+              <PropertyRef Name="WriterChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="GameBlogSiteModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="About" EntityType="Self.About" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ArticleLike" EntityType="Self.ArticleLike" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommentLike" EntityType="Self.CommentLike" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ContactForm" EntityType="Self.ContactForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Footer" EntityType="Self.Footer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reply" EntityType="Self.Reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Slider" EntityType="Self.Slider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Writer" EntityType="Self.Writer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriterChat" EntityType="Self.WriterChat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriterChatReply" EntityType="Self.WriterChatReply" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Article_Category" Association="Self.FK_Article_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Article" EntitySet="Article" />
@@ -281,9 +485,21 @@
             <End Role="Writer" EntitySet="Writer" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
+          <AssociationSet Name="FK_ArticleLike_Article" Association="Self.FK_ArticleLike_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleLike" EntitySet="ArticleLike" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comment_Article" Association="Self.FK_Comment_Article">
             <End Role="Article" EntitySet="Article" />
             <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentLike_Comment" Association="Self.FK_CommentLike_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentLike" EntitySet="CommentLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentLike_Member" Association="Self.FK_CommentLike_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentLike" EntitySet="CommentLike" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Writer_dbo_Role_RoleId" Association="Self.FK_dbo_Writer_dbo_Role_RoleId">
             <End Role="Role" EntitySet="Role" />
@@ -300,6 +516,30 @@
           <AssociationSet Name="FK_Reply_Comment" Association="Self.FK_Reply_Comment">
             <End Role="Comment" EntitySet="Comment" />
             <End Role="Reply" EntitySet="Reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Writer" Association="Self.FK_Skill_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="Skill" EntitySet="Skill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slider_Article" Association="Self.FK_Slider_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Slider" EntitySet="Slider" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Article" Association="Self.FK_Tag_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterChat_Writer" Association="Self.FK_WriterChat_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterChat" EntitySet="WriterChat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterChatReply_Writer" Association="Self.FK_WriterChatReply_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterChatReply" EntitySet="WriterChatReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterChatReply_WriterChat" Association="Self.FK_WriterChatReply_WriterChat">
+            <End Role="WriterChat" EntitySet="WriterChat" />
+            <End Role="WriterChatReply" EntitySet="WriterChatReply" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -332,35 +572,6 @@
           <Property Name="MyHobbies" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Conclusion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Article">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" />
-          <Property Name="WriterId" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="ReadingCount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Article_Category" FromRole="Article" ToRole="Category" />
-          <NavigationProperty Name="Writer" Relationship="Self.FK_Article_Writer" FromRole="Article" ToRole="Writer" />
-          <NavigationProperty Name="Log" Relationship="Self.FK_Log_Article" FromRole="Article" ToRole="Log" />
-          <NavigationProperty Name="Images" Relationship="GameBlogSiteModel.FK_Image_Article" FromRole="Article" ToRole="Images" />
-          <NavigationProperty Name="Comment" Relationship="GameBlogSiteModel.FK_Comment_Article" FromRole="Article" ToRole="Comment" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Article" Relationship="Self.FK_Article_Category" FromRole="Category" ToRole="Article" />
-        </EntityType>
         <EntityType Name="Contact">
           <Key>
             <PropertyRef Name="Id" />
@@ -392,18 +603,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Log">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ArticleId" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Explanation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Article" Relationship="Self.FK_Log_Article" FromRole="Log" ToRole="Article" />
-        </EntityType>
         <EntityType Name="Reply">
           <Key>
             <PropertyRef Name="Id" />
@@ -423,16 +622,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Writer" Relationship="Self.FK_dbo_Writer_dbo_Role_RoleId" FromRole="Role" ToRole="Writer" />
-        </EntityType>
-        <EntityType Name="Slider">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Explanation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Writer" Relationship="GameBlogSiteModel.FK_dbo_Writer_dbo_Role_RoleId" FromRole="Role" ToRole="Writer" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -444,120 +634,94 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Writer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="About" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GitHub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Article" Relationship="Self.FK_Article_Writer" FromRole="Writer" ToRole="Article" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_dbo_Writer_dbo_Role_RoleId" FromRole="Writer" ToRole="Role" />
-        </EntityType>
-        <Association Name="FK_Article_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Article" Type="Self.Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Article">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Article_Writer">
-          <End Role="Writer" Type="Self.Writer" Multiplicity="1" />
-          <End Role="Article" Type="Self.Article" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Writer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Article">
-              <PropertyRef Name="WriterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Log_Article">
-          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
-          <End Role="Log" Type="Self.Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Article">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Log">
-              <PropertyRef Name="ArticleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Writer_dbo_Role_RoleId">
-          <End Role="Role" Type="Self.Role" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Writer" Type="Self.Writer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Writer">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Context" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="About" EntityType="Self.About" />
-          <EntitySet Name="Article" EntityType="Self.Article" />
-          <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Contact" EntityType="Self.Contact" />
           <EntitySet Name="ContactForm" EntityType="Self.ContactForm" />
           <EntitySet Name="Footer" EntityType="Self.Footer" />
-          <EntitySet Name="Log" EntityType="Self.Log" />
           <EntitySet Name="Reply" EntityType="Self.Reply" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Slider" EntityType="Self.Slider" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Writer" EntityType="Self.Writer" />
-          <AssociationSet Name="FK_Article_Category" Association="Self.FK_Article_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Article" EntitySet="Article" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Article_Writer" Association="Self.FK_Article_Writer">
-            <End Role="Writer" EntitySet="Writer" />
-            <End Role="Article" EntitySet="Article" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Log_Article" Association="Self.FK_Log_Article">
-            <End Role="Article" EntitySet="Article" />
-            <End Role="Log" EntitySet="Log" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Writer_dbo_Role_RoleId" Association="Self.FK_dbo_Writer_dbo_Role_RoleId">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Writer" EntitySet="Writer" />
-          </AssociationSet>
           <EntitySet Name="Images" EntityType="GameBlogSiteModel.Images" />
-          <AssociationSet Name="FK_Image_Article" Association="GameBlogSiteModel.FK_Image_Article">
-            <End Role="Article" EntitySet="Article" />
-            <End Role="Images" EntitySet="Images" />
-          </AssociationSet>
+          <EntitySet Name="Tag" EntityType="GameBlogSiteModel.Tag" />
+          <EntitySet Name="Log" EntityType="GameBlogSiteModel.Log" />
           <EntitySet Name="Comment" EntityType="GameBlogSiteModel.Comment" />
-          <AssociationSet Name="FK_Comment_Article" Association="GameBlogSiteModel.FK_Comment_Article">
-            <End Role="Article" EntitySet="Article" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
           <AssociationSet Name="FK_Reply_Comment" Association="GameBlogSiteModel.FK_Reply_Comment">
             <End Role="Comment" EntitySet="Comment" />
             <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Skill" EntityType="GameBlogSiteModel.Skill" />
+          <EntitySet Name="Writer" EntityType="GameBlogSiteModel.Writer" />
+          <AssociationSet Name="FK_dbo_Writer_dbo_Role_RoleId" Association="GameBlogSiteModel.FK_dbo_Writer_dbo_Role_RoleId">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Writer" EntitySet="Writer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Writer" Association="GameBlogSiteModel.FK_Skill_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="Skill" EntitySet="Skill" />
+          </AssociationSet>
+          <EntitySet Name="ArticleLike" EntityType="GameBlogSiteModel.ArticleLike" />
+          <EntitySet Name="WriterChat" EntityType="GameBlogSiteModel.WriterChat" />
+          <AssociationSet Name="FK_WriterChat_Writer" Association="GameBlogSiteModel.FK_WriterChat_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterChat" EntitySet="WriterChat" />
+          </AssociationSet>
+          <EntitySet Name="WriterChatReply" EntityType="GameBlogSiteModel.WriterChatReply" />
+          <AssociationSet Name="FK_WriterChatReply_Writer" Association="GameBlogSiteModel.FK_WriterChatReply_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="WriterChatReply" EntitySet="WriterChatReply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WriterChatReply_WriterChat" Association="GameBlogSiteModel.FK_WriterChatReply_WriterChat">
+            <End Role="WriterChat" EntitySet="WriterChat" />
+            <End Role="WriterChatReply" EntitySet="WriterChatReply" />
+          </AssociationSet>
+          <EntitySet Name="Article" EntityType="GameBlogSiteModel.Article" />
+          <EntitySet Name="Slider" EntityType="GameBlogSiteModel.Slider" />
+          <AssociationSet Name="FK_Article_Writer" Association="GameBlogSiteModel.FK_Article_Writer">
+            <End Role="Writer" EntitySet="Writer" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ArticleLike_Article" Association="GameBlogSiteModel.FK_ArticleLike_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="ArticleLike" EntitySet="ArticleLike" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Article" Association="GameBlogSiteModel.FK_Comment_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_Article" Association="GameBlogSiteModel.FK_Image_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Article" Association="GameBlogSiteModel.FK_Log_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Slider_Article" Association="GameBlogSiteModel.FK_Slider_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Slider" EntitySet="Slider" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_Article" Association="GameBlogSiteModel.FK_Tag_Article">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <EntitySet Name="Category" EntityType="GameBlogSiteModel.Category" />
+          <EntitySet Name="CommentLike" EntityType="GameBlogSiteModel.CommentLike" />
+          <AssociationSet Name="FK_Article_Category" Association="GameBlogSiteModel.FK_Article_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CommentLike_Comment" Association="GameBlogSiteModel.FK_CommentLike_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="CommentLike" EntitySet="CommentLike" />
+          </AssociationSet>
+          <EntitySet Name="Member" EntityType="GameBlogSiteModel.Member" />
+          <AssociationSet Name="FK_CommentLike_Member" Association="GameBlogSiteModel.FK_CommentLike_Member">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="CommentLike" EntitySet="CommentLike" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Images">
           <Key>
             <PropertyRef Name="Id" />
@@ -567,18 +731,29 @@
           <Property Name="name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Image_Article" FromRole="Images" ToRole="Article" />
         </EntityType>
-        <Association Name="FK_Image_Article">
-          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
-          <End Type="GameBlogSiteModel.Images" Role="Images" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Article">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Images">
-              <PropertyRef Name="ArticleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Tag_Article" FromRole="Tag" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Log_Article" FromRole="Log" ToRole="Article" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Id" />
@@ -586,25 +761,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ArticleId" Type="Int32" />
           <Property Name="NameSurName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Message" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Date" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Comment_Article" FromRole="Comment" ToRole="Article" />
           <NavigationProperty Name="Reply" Relationship="GameBlogSiteModel.FK_Reply_Comment" FromRole="Comment" ToRole="Reply" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Comment_Article" FromRole="Comment" ToRole="Article" />
+          <NavigationProperty Name="CommentLike" Relationship="GameBlogSiteModel.FK_CommentLike_Comment" FromRole="Comment" ToRole="CommentLike" />
         </EntityType>
-        <Association Name="FK_Comment_Article">
-          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
-          <End Type="GameBlogSiteModel.Comment" Role="Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Article">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="ArticleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Reply_Comment">
           <End Type="GameBlogSiteModel.Comment" Role="Comment" Multiplicity="0..1" />
           <End Type="GameBlogSiteModel.Reply" Role="Reply" Multiplicity="*" />
@@ -617,7 +782,340 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WriterId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SLevel" Type="Int32" />
+          <NavigationProperty Name="Writer" Relationship="GameBlogSiteModel.FK_Skill_Writer" FromRole="Skill" ToRole="Writer" />
+        </EntityType>
+        <EntityType Name="Writer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="About" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GitHub" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Instagram" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Role" Relationship="GameBlogSiteModel.FK_dbo_Writer_dbo_Role_RoleId" FromRole="Writer" ToRole="Role" />
+          <NavigationProperty Name="Skill" Relationship="GameBlogSiteModel.FK_Skill_Writer" FromRole="Writer" ToRole="Skill" />
+          <NavigationProperty Name="WriterChat" Relationship="GameBlogSiteModel.FK_WriterChat_Writer" FromRole="Writer" ToRole="WriterChat" />
+          <NavigationProperty Name="WriterChatReply" Relationship="GameBlogSiteModel.FK_WriterChatReply_Writer" FromRole="Writer" ToRole="WriterChatReply" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Article_Writer" FromRole="Writer" ToRole="Article" />
+        </EntityType>
+        <Association Name="FK_dbo_Writer_dbo_Role_RoleId">
+          <End Type="GameBlogSiteModel.Role" Role="Role" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GameBlogSiteModel.Writer" Role="Writer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Writer">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Writer">
+          <End Type="GameBlogSiteModel.Writer" Role="Writer" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Skill" Role="Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ArticleLike">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_ArticleLike_Article" FromRole="ArticleLike" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="WriterChat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WriterId" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Writer" Relationship="GameBlogSiteModel.FK_WriterChat_Writer" FromRole="WriterChat" ToRole="Writer" />
+          <NavigationProperty Name="WriterChatReply" Relationship="GameBlogSiteModel.FK_WriterChatReply_WriterChat" FromRole="WriterChat" ToRole="WriterChatReply" />
+        </EntityType>
+        <Association Name="FK_WriterChat_Writer">
+          <End Type="GameBlogSiteModel.Writer" Role="Writer" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.WriterChat" Role="WriterChat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChat">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WriterChatReply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WriterChatId" Type="Int32" />
+          <Property Name="WriterId" Type="Int32" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Writer" Relationship="GameBlogSiteModel.FK_WriterChatReply_Writer" FromRole="WriterChatReply" ToRole="Writer" />
+          <NavigationProperty Name="WriterChat" Relationship="GameBlogSiteModel.FK_WriterChatReply_WriterChat" FromRole="WriterChatReply" ToRole="WriterChat" />
+        </EntityType>
+        <Association Name="FK_WriterChatReply_Writer">
+          <End Type="GameBlogSiteModel.Writer" Role="Writer" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.WriterChatReply" Role="WriterChatReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChatReply">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WriterChatReply_WriterChat">
+          <End Type="GameBlogSiteModel.WriterChat" Role="WriterChat" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.WriterChatReply" Role="WriterChatReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WriterChat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WriterChatReply">
+              <PropertyRef Name="WriterChatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="WriterId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ReadingCount" Type="Int32" Nullable="false" />
+          <Property Name="Slider" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Writer" Relationship="GameBlogSiteModel.FK_Article_Writer" FromRole="Article" ToRole="Writer" />
+          <NavigationProperty Name="ArticleLike" Relationship="GameBlogSiteModel.FK_ArticleLike_Article" FromRole="Article" ToRole="ArticleLike" />
+          <NavigationProperty Name="Comment" Relationship="GameBlogSiteModel.FK_Comment_Article" FromRole="Article" ToRole="Comment" />
+          <NavigationProperty Name="Images" Relationship="GameBlogSiteModel.FK_Image_Article" FromRole="Article" ToRole="Images" />
+          <NavigationProperty Name="Log" Relationship="GameBlogSiteModel.FK_Log_Article" FromRole="Article" ToRole="Log" />
+          <NavigationProperty Name="Slider1" Relationship="GameBlogSiteModel.FK_Slider_Article" FromRole="Article" ToRole="Slider" />
+          <NavigationProperty Name="Tag" Relationship="GameBlogSiteModel.FK_Tag_Article" FromRole="Article" ToRole="Tag" />
+          <NavigationProperty Name="Category" Relationship="GameBlogSiteModel.FK_Article_Category" FromRole="Article" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Slider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Explanation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Slider_Article" FromRole="Slider" ToRole="Article" />
+        </EntityType>
+        <Association Name="FK_Article_Writer">
+          <End Type="GameBlogSiteModel.Writer" Role="Writer" Multiplicity="1" />
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Writer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="WriterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ArticleLike_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.ArticleLike" Role="ArticleLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ArticleLike">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Images" Role="Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Slider_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Slider" Role="Slider" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Slider">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_Article">
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Article" Relationship="GameBlogSiteModel.FK_Article_Category" FromRole="Category" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="CommentLike">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommentId" Type="Int32" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="NumberofLikes" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Comment" Relationship="GameBlogSiteModel.FK_CommentLike_Comment" FromRole="CommentLike" ToRole="Comment" />
+          <NavigationProperty Name="Member" Relationship="GameBlogSiteModel.FK_CommentLike_Member" FromRole="CommentLike" ToRole="Member" />
+        </EntityType>
+        <Association Name="FK_Article_Category">
+          <End Type="GameBlogSiteModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.Article" Role="Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CommentLike_Comment">
+          <End Type="GameBlogSiteModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.CommentLike" Role="CommentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentLike">
+              <PropertyRef Name="CommentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="About" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="RPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Contract" Type="Boolean" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="CommentLike" Relationship="GameBlogSiteModel.FK_CommentLike_Member" FromRole="Member" ToRole="CommentLike" />
+        </EntityType>
+        <Association Name="FK_CommentLike_Member">
+          <End Type="GameBlogSiteModel.Member" Role="Member" Multiplicity="0..1" />
+          <End Type="GameBlogSiteModel.CommentLike" Role="CommentLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CommentLike">
+              <PropertyRef Name="MemberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -647,31 +1145,6 @@
                 <ScalarProperty Name="MyGoals" ColumnName="MyGoals" />
                 <ScalarProperty Name="MyHobbies" ColumnName="MyHobbies" />
                 <ScalarProperty Name="Conclusion" ColumnName="Conclusion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Article">
-            <EntityTypeMapping TypeName="GameBlogSiteModel.Article">
-              <MappingFragment StoreEntitySet="Article">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="ReadingCount" ColumnName="ReadingCount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="GameBlogSiteModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -709,18 +1182,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Log">
-            <EntityTypeMapping TypeName="GameBlogSiteModel.Log">
-              <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reply">
             <EntityTypeMapping TypeName="GameBlogSiteModel.Reply">
               <MappingFragment StoreEntitySet="Reply">
@@ -742,16 +1203,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Slider">
-            <EntityTypeMapping TypeName="GameBlogSiteModel.Slider">
-              <MappingFragment StoreEntitySet="Slider">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="GameBlogSiteModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -760,24 +1211,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Writer">
-            <EntityTypeMapping TypeName="GameBlogSiteModel.Writer">
-              <MappingFragment StoreEntitySet="Writer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="SurName" ColumnName="SurName" />
-                <ScalarProperty Name="About" ColumnName="About" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="GitHub" ColumnName="GitHub" />
-                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
-                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
-                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -790,6 +1223,29 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comment">
             <EntityTypeMapping TypeName="GameBlogSiteModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -797,13 +1253,151 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Message" ColumnName="Message" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="NameSurName" ColumnName="NameSurName" />
                 <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Skill">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="SLevel" ColumnName="SLevel" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Writer">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Writer">
+              <MappingFragment StoreEntitySet="Writer">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="GitHub" ColumnName="GitHub" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArticleLike">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.ArticleLike">
+              <MappingFragment StoreEntitySet="ArticleLike">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriterChat">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.WriterChat">
+              <MappingFragment StoreEntitySet="WriterChat">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriterChatReply">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.WriterChatReply">
+              <MappingFragment StoreEntitySet="WriterChatReply">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="WriterChatId" ColumnName="WriterChatId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Slider" ColumnName="Slider" />
+                <ScalarProperty Name="ReadingCount" ColumnName="ReadingCount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="WriterId" ColumnName="WriterId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Slider">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Slider">
+              <MappingFragment StoreEntitySet="Slider">
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommentLike">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.CommentLike">
+              <MappingFragment StoreEntitySet="CommentLike">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="NumberofLikes" ColumnName="NumberofLikes" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="GameBlogSiteModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Contract" ColumnName="Contract" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="RPassword" ColumnName="RPassword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

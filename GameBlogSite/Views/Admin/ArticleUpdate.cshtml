@@ -1,0 +1,65 @@
+﻿@model GameBlogSite.Models.EntityFramework.Article
+
+@{
+    ViewBag.Title = "İçerik Güncelleme";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>İçerik Güncelleme</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        @using (Html.BeginForm("ArticleUpdate", "Admin", FormMethod.Post))
+        {
+        <div class="white-box">
+            <div class="form-group">
+                <label for="exampleInputuname">Başlık</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-crown"></i></div>
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Başlık" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">İçerik</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-book"></i></div>
+                    @Html.TextAreaFor(x => x.Explanation, 15, 1, new { @class = "form-control", @placeholder = "İçerik" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputpwd1">Kategori</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-package"></i></div>
+                    @Html.DropDownList("categoryId", null, "Kategori Seçiniz", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputpwd1">Kategori Görünümü</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-package"></i></div>
+                    @Html.TextBoxFor(x => x.Category.Name, new { @class = "form-control", @placeholder = "Kategori", @disabled = "disabled" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputpwd2">Resim Değiştir</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-image"></i></div>
+                    @Html.TextBoxFor(x => x.Image, new { @class = "form-control", @type = "file" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputpwd2">Resim Görünümü</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-image"></i></div>
+                    <img src="@Model.Image" class="form-control" style="width: 1583px; height: auto;" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Güncelle</button>
+            <a href="@Url.Action("Article","Admin")" class="btn btn-inverse waves-effect waves-light">Geri</a>
+        </div>
+        }
+    </div>
+</div>

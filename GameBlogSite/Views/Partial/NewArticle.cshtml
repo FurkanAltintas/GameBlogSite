@@ -1,0 +1,53 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Article>
+
+<div class="col-md-6 col-lg-6 col-sm-12">
+    <div class="white-box">
+        @if (Model.Count() == 0)
+        {
+            <h3 class="box-title">Hiç Yeni içeriğiniz yok</h3>
+        }
+        else
+        {
+            <div class="comment-body">
+                <div class="mail-contnet">
+                    <h3 class="box-title">@Model.Count() Yeni içeriğiniz var</h3>
+                </div>
+            </div>
+        }
+        <div class="comment-center">
+            @if (Model.Count() == 0)
+            {
+                <h5 style="margin-left: 25px;">İçerik bulunmamaktadır.</h5>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="comment-body">
+                        <div class="user-img"> <img src="@item.Image" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                        <div class="mail-contnet">
+                            <h5>@item.Title</h5>
+                            <span class="mail-desc">@item.Explanation.Substring(0, 100)</span>
+                            @if (item.Status == true)
+                            {
+                                <span class="label label-rounded label-success">@item.Title (@item.Category.Name)</span>
+                            }
+                            else
+                            {
+                                <span class="label label-rounded label-danger">@item.Title (@item.Category.Name)</span>
+                            }
+
+                            <a href="/Admin/ArticleDelete/@item.Id" class="action" data-toggle="tooltip" data-original-title="Sil"><i class="ti-close text-danger"></i></a>
+                            @if (item.IsActive == false)
+                            {
+                                <a href="/Admin/ArticleActive/@item.Id" class="action" data-toggle="tooltip" data-original-title="Aktif Et"><i class="ti-check text-success"></i></a>
+                            }
+                            <span class="time pull-right">@item.Date.Value.ToString("dd MMM, yyyy")</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

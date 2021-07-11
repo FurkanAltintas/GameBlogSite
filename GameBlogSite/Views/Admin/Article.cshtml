@@ -1,0 +1,120 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Article>
+
+@{
+    ViewBag.Title = "İçerik Listesi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+    int o = 0;
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kategori İsmi</th>
+                            <th>Yazar İsmi</th>
+                            <th>İçerik Oluşturma Tarihi</th>
+                            <th>Başlık</th>
+                            <th>Durumu</th>
+                            <th>Okunma Sayısı</th>
+                            <th>Slider</th>
+                            <th class="text-nowrap">Aksiyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.Writer.Name @item.Writer.SurName </td>
+                                <td>@item.Date.Value.ToString("dd MMM yyyy") </td>
+                                <td>@item.Title</td>
+                                <td>
+                                    @if (item.IsActive == true)
+                                    {
+                                        <span class="label label-success">Yayında</span>
+                                    }
+                                    @if (item.IsActive == false)
+                                    {
+                                        <span class="label label-danger">Beklemede</span>
+                                    }
+                                    @if (item.Status == false)
+                                    {
+                                        <span class="label label-danger">Kaldırıldı</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.ReadingCount < 25)
+                                    {
+                                        <div class="progress progress-xs margin-vertical-10 ">
+                                            <div class="progress-bar progress-bar-danger" style="width: @item.ReadingCount%"></div>
+                                        </div>
+                                    }
+                                    @if (item.ReadingCount > 25 && item.ReadingCount < 50)
+                                    {
+                                        <div class="progress progress-xs margin-vertical-10 ">
+                                            <div class="progress-bar progress-bar-warning" style="width: @item.ReadingCount%"></div>
+                                        </div>
+                                    }
+                                    @if (item.ReadingCount > 50 && item.ReadingCount < 75)
+                                    {
+                                        <div class="progress progress-xs margin-vertical-10 ">
+                                            <div class="progress-bar progress-bar-primary" style="width: @item.ReadingCount%"></div>
+                                        </div>
+                                    }
+                                    @if (item.ReadingCount > 75)
+                                    {
+                                        <div class="progress progress-xs margin-vertical-10 ">
+                                            <div class="progress-bar progress-bar-success" style="width: @item.ReadingCount%"></div>
+                                        </div>
+                                    }
+                                </td>
+
+                                <td align="center">
+                                    @if (item.Slider == true)
+                                    {
+                                        o += 1;
+                                        <a href="/Admin/ArticleSlider/@item.Id"><input id="@item.Id" type="checkbox" checked="@item.Slider"></a>
+                                    }
+                                    else
+                                    {
+                                        o += 2;
+                                        <a href="/Admin/ArticleSlider/@item.Id"><input id="@item.Id" type="checkbox" checked="@item.Slider"></a>
+                                    }
+
+                                </td>
+                                <td class="text-nowrap">
+                                    <a href="/Admin/ArticleTag/@item.Id" data-toggle="tooltip" data-original-title="Tag"> <i class="fa fa-tag m-r-10 text-dark"></i></a>
+                                    <a href="/Admin/ArticleImages/@item.Id" data-toggle="tooltip" data-original-title="Resimler"> <i class="fa fa-image m-r-10 text-info"></i></a>
+                                    <a href="/Admin/ArticleDetail/@item.Id" data-toggle="tooltip" data-original-title="Detay"> <i class="fa fa-question m-r-10 text-warning"></i></a>
+                                    <a href="/Admin/ArticleUpdate/@item.Id" data-toggle="tooltip" data-original-title="Düzenle"> <i class="fa fa-pencil m-r-10 text-purple"></i></a>
+
+                                    @if (item.IsActive == true)
+                                    {
+                                        <a href="/Admin/ArticlePassive/@item.Id" data-toggle="tooltip" data-original-title="Pasif"> <i class="fa fa-close m-r-10 text-blue"></i> </a>
+                                    }
+                                    else
+                                    {
+                                        <a href="/Admin/ArticleActive/@item.Id" data-toggle="tooltip" data-original-title="Aktif"> <i class="fa fa-check m-r-10 text-success"></i> </a>
+                                    }
+                                    <a href="/Admin/ArticleDelete/@item.Id" data-toggle="tooltip" data-original-title="Sil"> <i class="fa fa-ban m-r-10 text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <a href="@Url.Action("ArticleAdd","Admin")" class="btn btn-block btn-success">Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

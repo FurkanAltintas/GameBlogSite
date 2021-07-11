@@ -16,7 +16,7 @@ namespace GameBlogSite.Models.EntityFramework
     {
         public int Id { get; set; }
         public Nullable<int> ArticleId { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
         public string Explanation { get; set; }
         public string Status { get; set; }
         public Nullable<System.DateTime> Date { get; set; }

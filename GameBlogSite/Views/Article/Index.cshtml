@@ -82,12 +82,18 @@
                             }
                             <div class="post-tags-share">
                                 <ol class="popular-tags d-flex flex-wrap">
-                                    @foreach (var item3 in Model.Category)
+                                    @foreach (var item3 in Model.Tag)
                                     {
-                                        <li><a href="/Category/Index/@item3.Id">@item3.Name</a></li>
+                                        <li><a href="/Tag/Index/@item3.Id">@item3.Name</a></li>
                                     }
+
+                                    @*@foreach (var item3 in Model.Category)
+                                        {
+                                            <li><a href="/Category/Index/@item3.Id">@item3.Name</a></li>
+                                        }*@
                                 </ol>
                             </div>
+
                             <!-- Related Post Area -->
                             <div class="related-posts clearfix">
                                 <!-- Headline -->
@@ -115,7 +121,7 @@
                                                 <div class="comment-wrapper d-flex">
                                                     <!-- Comment Meta -->
                                                     <div class="comment-author">
-                                                        <img src="~/Image/blog-img/9.jpg" alt="">
+                                                        <img src="@item4.Image" alt="">
                                                     </div>
                                                     <!-- Comment Content -->
                                                     <div class="comment-content">

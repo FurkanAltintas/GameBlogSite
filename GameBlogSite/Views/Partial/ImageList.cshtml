@@ -1,0 +1,37 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Images>
+
+@{
+    int i = 0;
+    int x = 0;
+}
+<link rel="stylesheet" type="text/css" href="~/Content/eliteadmin/plugins/bower_components/gallery/css/animated-masonry-gallery.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/eliteadmin/plugins/bower_components/fancybox/ekko-lightbox.min.css" />
+
+@if (Model.Count() == 0)
+{
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        Alt resim bulunmamaktadır.
+    </div>
+}
+else
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        @Model.Count() Tane alt resim bulunmaktadır.
+    </div>
+
+    <div class="form-group">
+        <div class="input-group" align="center">
+            @foreach (var item in Model)
+            {
+                <img src="@item.name" class="form-control col-md-3 col-xs-12" style="width: 550px; height: auto;">
+            }
+        </div>
+    </div>
+}
+
+<script type="text/javascript" src="~/Content/eliteadmin/plugins/bower_components/gallery/js/animated-masonry-gallery.js"></script>
+<script type="text/javascript" src="~/Content/eliteadmin/plugins/bower_components/gallery/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="~/Content/eliteadmin/plugins/bower_components/fancybox/ekko-lightbox.min.js"></script>

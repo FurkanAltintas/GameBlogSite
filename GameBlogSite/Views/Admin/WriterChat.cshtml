@@ -1,0 +1,49 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Writer>
+
+@{
+    ViewBag.Title = "Yazar Sohbet";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="chat-main-box">
+
+    <!-- .chat-left-panel -->
+    <div class="chat-left-aside">
+        <div class="open-panel"><i class="ti-angle-right"></i></div>
+        <div class="chat-left-inner" style="height: 707px;">
+
+            <div class="form-material"><input class="form-control p-20" type="text" placeholder="Search Contact"></div>
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 96%;">
+                <ul class="chatonline style-none " style="overflow: hidden; width: auto; height: 96%;">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href="/Admin/WriterChat/@item.Id"><img src="@item.Image" alt="user-img" class="img-circle"> <span>@item.Name @item.SurName <small class="text-success">online</small></span></a></li>
+                    }
+                    <li class="p-20"></li>
+                </ul><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 0px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 652px;"></div><div class="slimScrollRail" style="width: 0px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- .chat-left-panel -->
+    <!-- .chat-right-panel -->
+    <div class="chat-right-aside">
+        <div class="chat-main-header">
+            <div class="p-20 b-b">
+                @if (ViewBag.FullName != null)
+                {
+                    <h3 class="box-title">@ViewBag.FullName</h3>
+                }
+                else
+                {
+                    <h3 class="box-title">Chat Message</h3>
+                }
+            </div>
+        </div>
+
+        @Html.Action("WriterChatMessage", "Admin")
+
+    </div>
+    <!-- .chat-right-panel -->
+</div>
+

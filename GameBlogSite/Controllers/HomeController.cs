@@ -16,7 +16,7 @@ namespace GameBlogSite.Controllers
             ViewBag.Description = "Oyun haberleri paylaşan minik bir blog sitesi.";
             ViewBag.Keywords = "Oyun, Bilgisayar, Telefon, Moba, RogueLike, Aksiyon, Macera, Online";
 
-            var blog = db.Article.ToList();
+            var blog = db.Article.Where(x => x.Status == true).ToList();
             return View(blog);
         }
     }

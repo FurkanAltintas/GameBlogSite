@@ -1,0 +1,32 @@
+﻿@model GameBlogSite.Models.ArticleComments
+
+<ul class="chat-list slimscroll" style="overflow: hidden; width: auto; height: 527px;" tabindex="5005">
+    @foreach (var item in Model.Comment)
+    {
+        <li>
+            <div class="chat-image"> <img alt="male" src="@item.Image"> </div>
+            <div class="chat-body">
+                <div class="chat-text">
+                    <h4>@item.NameSurName</h4>
+                    <p> @item.Message </p>
+                    <b>@item.Date.Value.ToString("HH:mm")</b>
+                </div>
+            </div>
+        </li>
+
+        foreach (var item2 in Model.Reply)
+        {
+            <li class="odd">
+                <div class="chat-image"> <img alt="Female" src="~/Content/eliteadmin/plugins/images/users/genu.jpg"> </div>
+                <div class="chat-body">
+                    <div class="chat-text">
+                        <h4>@item2.NameSurName</h4>
+                        <p> @item2.Message </p>
+                        <b>@item.Date.Value.ToString("HH:mm")</b>
+                    </div>
+                </div>
+            </li>
+        }
+    }
+</ul>
+

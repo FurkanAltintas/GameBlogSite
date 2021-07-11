@@ -1,0 +1,41 @@
+﻿@using GameBlogSite.Models.EntityFramework
+@model List<Slider>
+
+@{
+    ViewBag.Title = "Slider";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    int i = 0;
+}
+
+@foreach (var item in Model)
+{
+    i++;
+    <div class="row">
+        <div class="col-md-12">
+            <div class="white-box">
+                <h3 class="box-title">@item.Title</h3>
+                <div class="row" id="image-popups">
+                    <div class="col-sm-3">
+                        <a href="@item.Image" data-effect="mfp-zoom-in">
+                            <img src="@item.Image" class="img-responsive">
+                            <br />
+                            <div class="text-nowrap" align="center">
+                                <a href="/Admin/SliderDetail/@item.Id" data-toggle="tooltip" data-original-title="Detay" style="margin-right:10px;"> <i class="fa fa-question m-r-10 text-warning"></i>Detay</a>
+                                <a href="/Admin/SliderUpdate/@item.Id" data-toggle="tooltip" data-original-title="Düzenle" style="margin-right:10px;"> <i class="fa fa-pencil m-r-10 text-purple"></i>Düzenle</a>
+                                <a href="/Admin/SliderDelete/@item.Id" data-toggle="tooltip" data-original-title="Sil" style="margin-right:10px;"> <i class="fa fa-ban m-r-10 text-danger"></i>Sil</a>
+                            </div>
+                            <br />
+                        </a>
+                    </div>
+
+                    <div style="position: relative; overflow: hidden; width: auto; height: @item.Explanation.Max()px;">
+                        <div class="col-sm-9" id="slimtest@(i)" style="overflow: hidden; width: auto; height: @item.Explanation.Max()px;">
+                            <p>@item.Explanation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -30,13 +30,12 @@
                     <nav class="classy-navbar justify-content-between" id="nikkiNav">
 
                         <!-- Nav brand -->
-                        <a href="index.html" class="nav-brand"><img src="~/Content/nikki-master/img/core-img/logo.png" alt=""></a>
+                        <a href="@Url.Action("Index","Home")" class="nav-brand"><img src="~/Content/nikki-master/img/core-img/logo.png" alt=""></a>
 
                         <!-- Navbar Toggler -->
                         <div class="classy-navbar-toggler">
                             <span class="navbarToggler"><span></span><span></span><span></span></span>
                         </div>
-
                         <!-- Menu -->
                         <div class="classy-menu">
 
@@ -52,15 +51,38 @@
                                     @Html.Action("Category", "Partial")
                                     <li><a href="@Url.Action("Index","AboutUs")">Hakkımızda</a></li>
                                     <li><a href="@Url.Action("Index","Contact")">İletişim</a></li>
+                                    <li><a href="@Url.Action("Login","Account")">Giriş Yap</a></li>
                                 </ul>
+
+                                <div class="modal" id="ModalLogin">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2 class="modal-title">Giriş Yap</h2>
+                                            </div>
+                                            <form>
+                                                <div class="modal-body">
+                                                    <label>Kullanıcı Adı</label>
+                                                    <input type="text" />
+                                                    <br />
+                                                    <label>Şifre</label>
+                                                    <input type="password" />
+                                                    <br />
+                                                    <button class="btn btn-success">Giriş Yap</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Search Form -->
                                 <div class="search-form">
                                     <form action="#" method="get">
-                                        <input type="search" name="search" class="form-control" placeholder="Search and hit enter...">
+                                        <input type="search" name="search" class="form-control" placeholder="Arama yapınız...">
                                         <button type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
+
 
                                 <!-- Social Button -->
                                 <div class="top-social-info">
@@ -82,7 +104,7 @@
 
     @RenderBody()
 
-    @Html.Action("Instagram","Partial")
+    @Html.Action("Instagram", "Partial")
 
     <footer class="footer-area">
         <div class="container">
